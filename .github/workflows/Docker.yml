@@ -5,7 +5,7 @@ on:
     branches: [origin]
 env:
   # GitHub Packages dan Docker Hub
-  IMAGE_NAME: dicodingBackEndExpert
+  IMAGE_NAME: dicoding-expert-auth
 jobs:
   build-and-push:
     runs-on: ubuntu-latest
