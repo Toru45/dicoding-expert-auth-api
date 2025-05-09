@@ -1,13 +1,16 @@
 name: Docker Image CI/CD
 
 on:
-  push:
-    branches: [origin]
+  workflow_run:
+    workflows: ["Jest Test Workflow"] # Harus sama persis dengan `name:` di jest.yml
+    types:
+      - completed
 env:
   # GitHub Packages dan Docker Hub
   IMAGE_NAME: dicoding-expert-auth
 jobs:
   build-and-push:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
     permissions:
       contents: read
