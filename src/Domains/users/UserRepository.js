@@ -1,6 +1,3 @@
-/* UserRepository merupakan objek yang memiliki kumpulan fungsi, 
-di mana fungsi tersebut digunakan untuk berinteraksi dengan database (agen eksternal) dalam cakupan domain users.*/
-
 class UserRepository {
   async addUser(registerUser) {
     throw new Error("USER_REPOSITORY.METHOD_NOT_IMPLEMENTED");
