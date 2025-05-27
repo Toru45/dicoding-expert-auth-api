@@ -12,6 +12,18 @@ describe("HTTP server", () => {
     await UsersTableTestHelper.cleanTable();
   });
 
+  it("should response 404 when request unregistered route", async () => {
+    // Arrange
+    const server = await createServer({});
+    // Action
+    const response = await server.inject({
+      method: "GET",
+      url: "/unregisteredRoute",
+    });
+    // Assert
+    expect(response.statusCode).toEqual(404);
+  });
+
   describe("when POST /users", () => {
     it("should response 201 and persisted user", async () => {
       // Arrange
@@ -167,13 +179,15 @@ describe("HTTP server", () => {
       fullname: "Dicoding Indonesia",
       password: "super_secret",
     };
-    const server = await createServer({}); // fake container
+    const server = await createServer({}); // fake injection
+
     // Action
     const response = await server.inject({
       method: "POST",
       url: "/users",
       payload: requestPayload,
     });
+
     // Assert
     const responseJson = JSON.parse(response.payload);
     expect(response.statusCode).toEqual(500);
